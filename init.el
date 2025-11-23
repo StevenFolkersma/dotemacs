@@ -624,7 +624,7 @@ The DWIM behaviour of this command is as follows:
   :ensure nil
   :init
   (setq org-directory (expand-file-name "~/Documents/Org/"))
-  (setq org-agenda-files (list "main.org" "general.org" "emacstodo.org")) 
+  (setq org-agenda-files (list "agenda.org" "inbox.org" "projects.org" "personal.org" "readinglist.org")) 
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-imenu-depth 7)
 
@@ -633,6 +633,7 @@ The DWIM behaviour of this command is as follows:
   :bind
   ( :map global-map
     ("C-c l" . org-store-link)
+    ("C-c a" . org-agenda)
     ("C-c o" . org-open-at-point-global)
     :map org-mode-map
     ;; I don't like that Org binds one zillion keys, so if I want one
@@ -649,7 +650,12 @@ The DWIM behaviour of this command is as follows:
 
   ;;;; general settings
   :config
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
+  (setq org-refile-targets '(("agenda.org" :maxlevel . 1)
+    ("personal.org" :maxlevel . 1)
+    ("readinglist.org" :maxlevel . 1)
+    ("projects.org" :maxlevel . 2)))
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
   (setq org-hide-emphasis-markers t)
   (setq org-hide-leading-stars nil)
   (setq org-ellipsis "")
@@ -659,8 +665,8 @@ The DWIM behaviour of this command is as follows:
 	  ("e" . "src emacs-lisp")
 	  ("E" . "src emacs-lisp :results value code :lexical t")
 	  ("t" . "src emacs-lisp :tangle FILENAME")
-	  ("x" . "example")
-	  ("X" . "export")
+	  ("b" . "src bash")
+	  ("x" . "export")
 	  ("q" . "quote")))
   (setq org-fold-catch-invisible-edits 'show) ;; what happens when you edit in a folded block
   (setq org-loop-over-headlines-in-active-region 'start-level)
@@ -675,13 +681,49 @@ The DWIM behaviour of this command is as follows:
   (setq org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
 	'((sequence
 	   "TODO(t)"           ; A task that is ready to be tackled
-	   "IDEA(i)"           ; An idea, not urgent
-	   "READ(b)"            ; To read, not urgent
-	   "LATER(w)"           ; Not urgent, might do later
-	   "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+	   "NEXT(n)"           ; An idea, not urgent
+	   "HOLD(h)"            ; To read, not urgent
+	   "|"                 ; needed for separation
 	   "DONE(d)"           ; Task has been completed
 	   "ARCHIVED(a)" )))
-  )
+
+  (setq org-agenda-custom-commands
+    '(("g" "Get Things Done (GTD)"
+       ((agenda ""
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-deadline-warning-days 0)))
+
+        (todo "NEXT"
+              ((org-agenda-skip-function
+                '(org-agenda-skip-entry-if 'deadline))
+               (org-agenda-prefix-format "  %i %-12:c [%e] ")
+               (org-agenda-overriding-header "\nTasks\n")))
+
+
+        (tags-todo "planning"
+                   ((org-agenda-prefix-format "  %?-12t% s")
+                    (org-agenda-overriding-header "\nPlanning\n")))
+        (agenda nil
+                ((org-agenda-entry-types '(:deadline))
+                 (org-agenda-format-date "")
+                 (org-deadline-warning-days 7)
+                 (org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
+                 (org-agenda-overriding-header "\nDeadlines")))
+
+        (tags-todo "inbox"
+                   ((org-agenda-prefix-format "  %?-12t% s")
+                    (org-agenda-overriding-header "\nInbox\n")))
+
+        )))))
+
+(defun log-todo-next-creation-date (&rest ignore)
+  "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+  (when (and (string= (org-get-todo-state) "NEXT")
+             (not (org-entry-get nil "ACTIVATED")))
+    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+(add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
 
 (use-package org-modern
   :ensure t
@@ -719,31 +761,28 @@ The DWIM behaviour of this command is as follows:
 
      (setq org-capture-templates
            `(("e" "Emacs Inbox" entry
-              (file+headline "emacstodo.org" "Inbox")
+              (file+headline "projects.org" "emacs")
               ,(concat "* %^{Title}\n"
                        ":PROPERTIES:\n"
                        ":CAPTURED: %U\n"
-                       ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                        ":END:\n\n"
-                       "%a\n%i%?\m")
+                       "%i\n%?\n")
               :empty-lines-after 1)
  	    ("i" "Inbox" entry
-              (file+headline "general.org" "Inbox")
+              (file+headline "inbox.org" "Inbox")
               ,(concat "* %^{Title}\n"
                        ":PROPERTIES:\n"
                        ":CAPTURED: %U\n"
-                       ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                        ":END:\n\n"
-                       "%a\n%i%?\n")
+                       "%i\n%?\n")
               :empty-lines-after 1)
-             ("r" "To Read" entry
-              (file+olp "general.org" "To Read")
+             ("r" "Wishlist" entry
+              (file+olp "inbox.org" "Whishlist")
               ,(concat "* %^{Title} %^g\n"
                        ":PROPERTIES:\n"
                        ":CAPTURED: %U\n"
-                       ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                        ":END:\n\n"
-                       "%a\n%?\n")
+                       "%i\n%?\n")
               :empty-lines-after 1))))
 
 (defun steven/recipe-template ()
@@ -897,7 +936,7 @@ The DWIM behaviour of this command is as follows:
     (nano-elfeed-prev-entry)
     (call-interactively #'elfeed-search-show-entry)))
 
-(setq elfeed-search-filter "@2-weeks-ago +unread +news"          
+(setq elfeed-search-filter "@12-hours-ago +unread +news"          
       elfeed-search-print-entry-function
            #'nano-elfeed-search-print-entry)
 
@@ -1037,6 +1076,15 @@ The DWIM behaviour of this command is as follows:
   ;; Show icons for files in the Magit status and other buffers.
   (with-eval-after-load 'magit
     (setq magit-format-file-function #'magit-format-file-nerd-icons)))
+
+(when (eq system-type 'darwin)
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install))
+
+  (use-package org-pdftools
+    :hook (org-mode . org-pdftools-setup-link)))
 
 (use-package biome
   :ensure t

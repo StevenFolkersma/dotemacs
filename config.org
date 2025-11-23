@@ -113,12 +113,9 @@ package archives, pinning packages, and setting priorities:
 
 
 ** The =init.el= section to set folder with custom .el files
-#+begin_src emacs-lisp :tangle "init.el"
+#+begin_src emacs-lisp :tangle "init.el" :results silent
 (add-to-list 'load-path "~/.config/emacs/steven")
 #+end_src
-
-#+RESULTS:
-| ~/.config/emacs/steven | ~/.config/emacs/steven/ | /usr/local/share/emacs/site-lisp/notmuch/ | Users/stevenfolkersma/.config/emacs/steven/ | /Users/stevenfolkersma/.config/emacs/elpa/beframe-1.4.0 | /Users/stevenfolkersma/.config/emacs/elpa/consult-denote-0.3.1 | /Users/stevenfolkersma/.config/emacs/elpa/consult-notes-20241213.1718 | /Users/stevenfolkersma/.config/emacs/elpa/corfu-20250611.2329 | /Users/stevenfolkersma/.config/emacs/elpa/denote-journal-0.1.1 | /Users/stevenfolkersma/.config/emacs/elpa/denote-org-0.1.1 | /Users/stevenfolkersma/.config/emacs/elpa/denote-silo-0.1.2 | /Users/stevenfolkersma/.config/emacs/elpa/denote-4.0.0 | /Users/stevenfolkersma/.config/emacs/elpa/dired-preview-0.6.0 | /Users/stevenfolkersma/.config/emacs/elpa/dired-subtree-20240629.1859 | /Users/stevenfolkersma/.config/emacs/elpa/dired-hacks-utils-20240629.1906 | /Users/stevenfolkersma/.config/emacs/elpa/elfeed-20241202.22 | /Users/stevenfolkersma/.config/emacs/elpa/embark-consult-1.1 | /Users/stevenfolkersma/.config/emacs/elpa/consult-2.7 | /Users/stevenfolkersma/.config/emacs/elpa/embark-1.1 | /Users/stevenfolkersma/.config/emacs/elpa/magit-4.3.8 | /Users/stevenfolkersma/.config/emacs/elpa/marginalia-20250728.240 | /Users/stevenfolkersma/.config/emacs/elpa/modus-themes-20250718.410 | /Users/stevenfolkersma/.config/emacs/elpa/nano-theme-0.3.4 | /Users/stevenfolkersma/.config/emacs/elpa/nerd-icons-completion-20250728.1610 | /Users/stevenfolkersma/.config/emacs/elpa/nerd-icons-corfu-20250729.1544 | /Users/stevenfolkersma/.config/emacs/elpa/nerd-icons-dired-20250727.1932 | /Users/stevenfolkersma/.config/emacs/elpa/nerd-icons-20250718.355 | /Users/stevenfolkersma/.config/emacs/elpa/ol-notmuch-20250531.2228 | /Users/stevenfolkersma/.config/emacs/elpa/notmuch-20250620.1557 | /Users/stevenfolkersma/.config/emacs/elpa/orderless-20250728.243 | /Users/stevenfolkersma/.config/emacs/elpa/org-cliplink-20201126.1020 | /Users/stevenfolkersma/.config/emacs/elpa/org-modern-1.9 | /Users/stevenfolkersma/.config/emacs/elpa/org-pdftools-20250714.1631 | /Users/stevenfolkersma/.config/emacs/elpa/org-noter-20250730.30 | /Users/stevenfolkersma/.config/emacs/elpa/org-present-20220806.1847 | /Users/stevenfolkersma/.config/emacs/elpa/org-roam-20250701.528 | /Users/stevenfolkersma/.config/emacs/elpa/magit-section-20250807.2306 | /Users/stevenfolkersma/.config/emacs/elpa/llama-20250808.1023 | /Users/stevenfolkersma/.config/emacs/elpa/emacsql-20250601.1009 | /Users/stevenfolkersma/.config/emacs/elpa/dash-20250312.1307 | /Users/stevenfolkersma/.config/emacs/elpa/pdf-tools-1.1.0 | /Users/stevenfolkersma/.config/emacs/elpa/s-20220902.1511 | /Users/stevenfolkersma/.config/emacs/elpa/tablist-1.0 | /Users/stevenfolkersma/.config/emacs/elpa/transient-0.9.4 | /Users/stevenfolkersma/.config/emacs/elpa/trashed-20230811.157 | /Users/stevenfolkersma/.config/emacs/elpa/vertico-20250806.523 | /Users/stevenfolkersma/.config/emacs/elpa/with-editor-3.4.5 | /usr/local/share/emacs/site-lisp | /usr/local/share/emacs/site-lisp/libidn | /usr/local/share/emacs/site-lisp/notmuch | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/vc | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/use-package | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/url | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/textmodes | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/progmodes | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/play | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/org | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/nxml | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/net | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/mh-e | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/mail | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/leim | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/language | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/international | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/image | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/gnus | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/eshell | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/erc | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/emulation | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/emacs-lisp | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/cedet | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/calendar | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/calc | /usr/local/Cellar/emacs-plus@30/30.1/share/emacs/30.1/lisp/obsolete |
 
 ** The =init.el= section to stop emacs from saving backup files
 By default, Emacs tries to lock down files so that they are not
@@ -634,19 +631,20 @@ The results buffer supports navigation: hyperlinks (e.g., for synonyms or relate
 
 ** The =init.el= section to setup spell-checking
 
-I use hunspell, for which I installed english and dutch spelling libraries using:
-
-#+begin_src bash
-sudo dnf install hunspell hunspell-en hunspell-nl
-#+end_src
-
-Dictionary files should be placed in /usr/share/hunspell. Dictionaries available by hunspell are listed here, with the current naming I use, nl_NL and en_GB should both be there!
+For spell checking I use hunspell, both for Linux (dnf) and macOS (brew). Dutch and English spelling libraries need to be added. Current dictionaries available by hunspell are listed with the following command:
 
 #+begin_src bash
 hunspell -D
 #+end_src
 
-Dictionary files should be placed in /usr/share/hunspell. For Mac I downloaded the libreOffice dictionaries and placed them in ~/Library/Spelling. 
+My emacs functions expect *nl_NL* and *en_GB* libraries to be installed.
+
+- nl_NL dictionaries from opentaal.nl: [[https://github.com/OpenTaal/opentaal-hunspell][GitHub - OpenTaal/opentaal-hunspell]]
+- en_GB dictionaries: [[https://github.com/marcoagpinto/aoo-mozilla-en-dict][GitHub - marcoagpinto/aoo-mozilla-en-dict: English Dictionaries Project]]
+
+Dictionary files should be placed in: 
+- *Linux*: /usr/share/hunspell. 
+- *macOS*: ~/Library/Spelling. 
 
 Important command: C-; to autocorrect previous word before point. Middle click to correct a marked word. M-$ to open context menu for word on point. I have turned off the automatic hook to text mode, such that I can activate it myself.
 
@@ -756,7 +754,7 @@ of characters, I use my ~prot-pair-insert~ command ([[#h:48d2bab5-241f-49dd-9554
   
 #+end_src
 
-** The =init.el= setup of completiopn with vertico
+** The =init.el= setup of completion with vertico
 Configure the minibuffer and completions.
 - vertico-cycle: So I can go from bottom item to top item by down arrow or C-n
 - vertico-resize nil: always keep the same size
@@ -1114,13 +1112,24 @@ Some explanations:
 - org-hide-emphasis-markers: ?
 - org-todo-keywords: Set keywords, multiple TODO sequences can be set but I have not done so yet.
 
+Org refiling is set like this, so I see the full path of the outline. To deal with different headers level and repeating subheadings (e.g. Tasks and Ideas)
+#+begin_src 
+ (setq org-refile-targets '(("agenda.org" :maxlevel . 1)
+      ("personal.org" :maxlevel . 1)
+      ("readinglist.org" :maxlevel . 1)
+      ("projects.org" :maxlevel . 2)))
+ (setq org-refile-use-outline-path 'file)
+ (setq org-outline-path-complete-in-steps nil)
+#+end_src
+
+
 #+begin_src emacs-lisp :tangle "init.el"
       ;;; Org-mode (personal information manager)
   (use-package org
     :ensure nil
     :init
     (setq org-directory (expand-file-name "~/Documents/Org/"))
-    (setq org-agenda-files (list "main.org" "general.org" "emacstodo.org")) 
+    (setq org-agenda-files (list "agenda.org" "inbox.org" "projects.org" "personal.org" "readinglist.org")) 
     (setq org-agenda-skip-scheduled-if-done t)
     (setq org-imenu-depth 7)
 
@@ -1129,6 +1138,7 @@ Some explanations:
     :bind
     ( :map global-map
       ("C-c l" . org-store-link)
+      ("C-c a" . org-agenda)
       ("C-c o" . org-open-at-point-global)
       :map org-mode-map
       ;; I don't like that Org binds one zillion keys, so if I want one
@@ -1145,7 +1155,12 @@ Some explanations:
 
     ;;;; general settings
     :config
-    (setq org-refile-targets '((org-agenda-files :maxlevel . 1)))
+    (setq org-refile-targets '(("agenda.org" :maxlevel . 1)
+      ("personal.org" :maxlevel . 1)
+      ("readinglist.org" :maxlevel . 1)
+      ("projects.org" :maxlevel . 2)))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
     (setq org-hide-emphasis-markers t)
     (setq org-hide-leading-stars nil)
     (setq org-ellipsis "")
@@ -1155,8 +1170,8 @@ Some explanations:
   	  ("e" . "src emacs-lisp")
   	  ("E" . "src emacs-lisp :results value code :lexical t")
   	  ("t" . "src emacs-lisp :tangle FILENAME")
-  	  ("x" . "example")
-  	  ("X" . "export")
+  	  ("b" . "src bash")
+  	  ("x" . "export")
   	  ("q" . "quote")))
     (setq org-fold-catch-invisible-edits 'show) ;; what happens when you edit in a folded block
     (setq org-loop-over-headlines-in-active-region 'start-level)
@@ -1171,20 +1186,58 @@ Some explanations:
     (setq org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
   	'((sequence
   	   "TODO(t)"           ; A task that is ready to be tackled
-  	   "IDEA(i)"           ; An idea, not urgent
-  	   "READ(b)"            ; To read, not urgent
-  	   "LATER(w)"           ; Not urgent, might do later
-  	   "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+  	   "NEXT(n)"           ; An idea, not urgent
+  	   "HOLD(h)"            ; To read, not urgent
+  	   "|"                 ; needed for separation
   	   "DONE(d)"           ; Task has been completed
   	   "ARCHIVED(a)" )))
-    )
+
+    (setq org-agenda-custom-commands
+      '(("g" "Get Things Done (GTD)"
+         ((agenda ""
+                  ((org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'deadline))
+                   (org-deadline-warning-days 0)))
+
+          (todo "NEXT"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline))
+                 (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                 (org-agenda-overriding-header "\nTasks\n")))
+
+
+          (tags-todo "planning"
+                     ((org-agenda-prefix-format "  %?-12t% s")
+                      (org-agenda-overriding-header "\nPlanning\n")))
+          (agenda nil
+                  ((org-agenda-entry-types '(:deadline))
+                   (org-agenda-format-date "")
+                   (org-deadline-warning-days 7)
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-entry-if 'notregexp "\\* NEXT"))
+                   (org-agenda-overriding-header "\nDeadlines")))
+
+          (tags-todo "inbox"
+                     ((org-agenda-prefix-format "  %?-12t% s")
+                      (org-agenda-overriding-header "\nInbox\n")))
+
+          )))))
 
 #+end_src
 
 #+RESULTS:
 : org-narrow-to-subtree
+*** The =init.el= section with custom org functions
 
+#+begin_src emacs-lisp :tangle "init.el"
+(defun log-todo-next-creation-date (&rest ignore)
+  "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+  (when (and (string= (org-get-todo-state) "NEXT")
+             (not (org-entry-get nil "ACTIVATED")))
+    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+(add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
 
+#+end_src
 *** The =init.el= section on org-modern
 
 Setting for org-modern. Its not turned on by default and I would like it to only style the headings. A hook is add to toggle org-hide-leading-stars on toggling org-modern.
@@ -1238,31 +1291,28 @@ Main capture templates. The main idea is:
 
        (setq org-capture-templates
              `(("e" "Emacs Inbox" entry
-                (file+headline "emacstodo.org" "Inbox")
+                (file+headline "projects.org" "emacs")
                 ,(concat "* %^{Title}\n"
                          ":PROPERTIES:\n"
                          ":CAPTURED: %U\n"
-                         ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                          ":END:\n\n"
-                         "%a\n%i%?\m")
+                         "%i\n%?\n")
                 :empty-lines-after 1)
    	    ("i" "Inbox" entry
-                (file+headline "general.org" "Inbox")
+                (file+headline "inbox.org" "Inbox")
                 ,(concat "* %^{Title}\n"
                          ":PROPERTIES:\n"
                          ":CAPTURED: %U\n"
-                         ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                          ":END:\n\n"
-                         "%a\n%i%?\n")
+                         "%i\n%?\n")
                 :empty-lines-after 1)
-               ("r" "To Read" entry
-                (file+olp "general.org" "To Read")
+               ("r" "Wishlist" entry
+                (file+olp "inbox.org" "Whishlist")
                 ,(concat "* %^{Title} %^g\n"
                          ":PROPERTIES:\n"
                          ":CAPTURED: %U\n"
-                         ":CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n"
                          ":END:\n\n"
-                         "%a\n%?\n")
+                         "%i\n%?\n")
                 :empty-lines-after 1))))
 #+end_src
 
@@ -1448,7 +1498,7 @@ This is a function to style the search mode (based on [[https://github.com/rougi
       (nano-elfeed-prev-entry)
       (call-interactively #'elfeed-search-show-entry)))
 
-  (setq elfeed-search-filter "@2-weeks-ago +unread +news"          
+  (setq elfeed-search-filter "@12-hours-ago +unread +news"          
         elfeed-search-print-entry-function
              #'nano-elfeed-search-print-entry)
 
@@ -1691,18 +1741,20 @@ Some notes on settings:
 
 ** The =init.el= setup of pdf-tool
 
-#+begin_src emacs-lisp
-(use-package pdf-tools
-   :ensure t
-   :config
-   (pdf-tools-install))
+pdftools needs a server (epdfinfo) to run for opening pdf files. The server is configured automatically on installation of the package. However, this configuration is not universal between Linux and macOS. For now, this only works on macOS, since I open pdf files there regularly.
 
-(use-package org-pdftools
-   :hook (org-mode . org-pdftools-setup-link))
+#+begin_src emacs-lisp :tangle "init.el"
+(when (eq system-type 'darwin)
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install))
+
+  (use-package org-pdftools
+    :hook (org-mode . org-pdftools-setup-link)))
 #+end_src
 
 #+RESULTS:
-| org-pdftools-setup-link | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-fold-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes |
 
 ** The =init.el= setup of weather in emacs (biome.el)
 
